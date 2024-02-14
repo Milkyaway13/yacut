@@ -21,5 +21,5 @@ class URLMap(db.Model):
 
     def from_dict(self, data):
         api_column_mapping = {"url": "original", "custom_id": "short"}
-        for field in ["url", "custom_id"]:
+        for field in ("url", "custom_id"):
             setattr(self, api_column_mapping[field], data[field])

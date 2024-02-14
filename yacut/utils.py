@@ -1,4 +1,3 @@
-from http import HTTPStatus
 from random import choice
 from re import match
 from string import ascii_letters, digits
@@ -23,7 +22,7 @@ def validate_create_id(data):
         raise InvalidAPIUsage("Указан недопустимый URL")
     if not data.get("custom_id"):
         data["custom_id"] = get_unique_short_id()
-        return HTTPStatus.CREATED
+    # Всё таки эта проверка нужна, без нее тесты падают
     if not match(CUSTOM_LINK_REGEX_PATTERN, data["custom_id"]):
         raise InvalidAPIUsage("Указано недопустимое имя для короткой ссылки")
     if URLMap.query.filter_by(short=data["custom_id"]).first():

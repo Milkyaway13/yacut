@@ -14,7 +14,7 @@ def add_custom_id():
         if not short:
             short = get_unique_short_id()
         elif URLMap.query.filter_by(short=short).first():
-            flash("предложенный вариант короткой ссылки уже существует.")
+            flash("Предложенный вариант короткой ссылки уже существует.")
             return render_template("index.html", form=form)
         url_map = URLMap(
             original=form.original_link.data,

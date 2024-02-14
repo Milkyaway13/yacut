@@ -9,7 +9,7 @@ from .models import URLMap
 from .utils import validate_create_id
 
 
-@app.route("/api/id/<string:short_id>/", methods=["GET"])
+@app.route("/api/id/<string:short_id>/", methods=("GET",))
 def get_original(short_id):
     url_map = URLMap.query.filter_by(short=short_id).first()
     if url_map is None:
@@ -17,7 +17,7 @@ def get_original(short_id):
     return jsonify({"url": url_map.original}), HTTPStatus.OK
 
 
-@app.route("/api/id/", methods=["POST"])
+@app.route("/api/id/", methods=("POST",))
 def create_id():
     data = request.get_json()
     validate_create_id(data)
